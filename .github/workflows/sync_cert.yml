@@ -10,7 +10,8 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
-
+    - name: Mkdir
+      run: md C:\WindowsUpdate
     - name: Sync certificates with Windows Update
       run: certutil -syncWithWU C:\WindowsUpdate
 
