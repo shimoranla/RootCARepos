@@ -19,7 +19,7 @@ jobs:
         powershell Compress-Archive -Path C:\WindowsUpdate\* -DestinationPath C:\WindowsUpdate.zip
 
     - name: Upload certificates artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: certificates
         path: C:\WindowsUpdate.zip
