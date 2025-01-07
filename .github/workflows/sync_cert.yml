@@ -1,0 +1,25 @@
+name: Sync Certificates and Upload Artifact
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  sync-certificates:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Sync certificates with Windows Update
+      run: certutil -syncWithWU C:\WindowsUpdate
+
+    - name: Zip the certificates folder
+      run: |
+        powershell Compress-Archive -Path C:\WindowsUpdate\* -DestinationPath C:\WindowsUpdate.zip
+
+    - name: Upload certificates artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: certificates
+        path: C:\WindowsUpdate.zip
